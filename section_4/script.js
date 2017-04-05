@@ -3,14 +3,14 @@ console.log(ReactDOM)
 const list = ['apple', 'banana', 'mango'];
 let add = true;
 
-setInterval(function(){
-  if(add){
+setInterval(function () {
+  if (add) {
     list.push('orange')
-  }else{
+  } else {
     list.pop()
   }
   add = !add
-},1000);
+}, 1000);
 
 const render = () => {
   const jsContainer = document.getElementById('js')
@@ -29,6 +29,14 @@ const render = () => {
 `
 
   const reactContainer = document.getElementById('react')
+  const listElements = list.map(name=>{
+    return React.createElement(
+        'li',
+        null,
+        name
+      )
+  })
+
   ReactDOM.render(
     React.createElement(
       'div',
@@ -39,7 +47,8 @@ const render = () => {
         'p',
         null,
         new Date().toString()
-      )
+      ),
+      React.createElement('ul',null,listElements)
     ),
     reactContainer
   )
